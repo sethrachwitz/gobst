@@ -113,7 +113,7 @@ func TestPreOrder(t *testing.T) {
 
 	for k, v := range items {
 		if (v != correct[k]) {
-			t.Error("Preorder item at index", k, "is incorrect")
+			t.Error("PreOrder item at index", k, "is incorrect")
 		}
 	}
 }
@@ -131,7 +131,7 @@ func TestInOrder(t *testing.T) {
 
 	for k, v := range items {
 		if (v != correct[k]) {
-			t.Error("Inorder item at index", k, "is incorrect")
+			t.Error("InOrder item at index", k, "is incorrect")
 		}
 	}
 }
@@ -149,7 +149,7 @@ func TestPostOrder(t *testing.T) {
 
 	for k, v := range items {
 		if (v != correct[k]) {
-			t.Error("Inorder item at index", k, "is incorrect")
+			t.Error("PostOrder item at index", k, "is incorrect")
 		}
 	}
 }
