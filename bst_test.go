@@ -4,6 +4,35 @@ import (
 	"testing"
 )
 
+func SetupBST() (tree *Tree) {
+	tree = NewBST()
+
+	values := []int{4, 3, 6, 2, 7, 5}
+
+	for _, v := range values {
+		if (tree.Insert(v) == false) {
+			return nil
+		}
+	}
+
+	// Test that tree structure is correct
+	if (tree.root.value != 4 || 
+		tree.root.left.value != 3 || 
+		tree.root.right.value != 6 && 
+		tree.root.left.left.value != 2 || 
+		tree.root.right.left.value != 5 || 
+		tree.root.right.right.value != 7) {
+			return nil
+	}
+
+	// Test that node count is correct
+	if (tree.nodes != 6) {
+		return nil
+	}
+
+	return
+}
+
 func TestInsert(t *testing.T) {
 	tree := NewBST()
 
@@ -48,33 +77,11 @@ func TestInsert(t *testing.T) {
 }
 
 func TestFind(t *testing.T) {
-	// Setup code, test fails if setup fails
-	tree := NewBST()
+	tree := SetupBST()
 
-	values := []int{4, 3, 6, 2, 7, 5}
-
-	for _, v := range values {
-		if (tree.Insert(v) == false) {
-			t.Fatal("Setup failed")
-		}
-	}
-
-	// Test that tree structure is correct
-	if (tree.root.value != 4 || 
-		tree.root.left.value != 3 || 
-		tree.root.right.value != 6 && 
-		tree.root.left.left.value != 2 || 
-		tree.root.right.left.value != 5 || 
-		tree.root.right.right.value != 7) {
-			t.Fatal("Setup failed")
-	}
-
-	// Test that node count is correct
-	if (tree.nodes != 6) {
+	if (tree == nil) {
 		t.Fatal("Setup failed")
 	}
-
-	// Run tests
 
 	// Find root node
 	found, level := tree.Find(4)
@@ -90,5 +97,59 @@ func TestFind(t *testing.T) {
 		t.Error("Node 5 not found")
 	} else if level != 3 {
 		t.Error("Node 5 found at incorrect level")
+	}
+}
+
+func TestPreOrder(t *testing.T) {
+	tree := SetupBST()
+
+	if (tree == nil) {
+		t.Fatal("Setup failed")
+	}
+
+	items := tree.PreOrder()
+
+	correct := []int{4,3,2,6,5,7}
+
+	for k, v := range items {
+		if (v != correct[k]) {
+			t.Error("Preorder item at index", k, "is incorrect")
+		}
+	}
+}
+
+func TestInOrder(t *testing.T) {
+	tree := SetupBST()
+
+	if (tree == nil) {
+		t.Fatal("Setup failed")
+	}
+
+	items := tree.InOrder()
+
+	correct := []int{2,3,4,5,6,7}
+
+	for k, v := range items {
+		if (v != correct[k]) {
+			t.Error("Inorder item at index", k, "is incorrect")
+		}
+	}
+}
+
+func TestPostOrder(t *testing.T) {
+	tree := SetupBST()
+
+	if (tree == nil) {
+		t.Fatal("Setup failed")
+	}
+
+	items := tree.PostOrder()
+
+	correct := []int{2,3,5,7,6,4}
+
+	for k, v := range items {
+		if (v != correct[k]) {
+			t.Error("Inorder item at index", k, "is incorrect")
+		}
 	}
 }
