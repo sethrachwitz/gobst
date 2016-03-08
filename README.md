@@ -2,6 +2,7 @@ gobst
 ===
 The package `sethrachwitz/gobst` implements a binary search tree in go.  Current functionality allows for `Insert` and `Find` to be called on the tree.  Future functionality will include `Delete`, and print functions such as `PrePrint`, `OrderPrint`, and `PostPrint` (pre-order, in-order and post-order).
 
+This package can be downloaded by running `go get github.com/sethrachwitz/gobst`.
 
 ## Methods
 
