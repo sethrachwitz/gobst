@@ -10,6 +10,8 @@ This package can be downloaded by running `go get github.com/sethrachwitz/gobst`
 
 `Find` takes the value being searched for in the tree as a parameter, and returns true or false depending on if the value was found in the tree, and an integer representing the number of levels traversed before finding / not finding the value.
 
+`Delete` takes the value that is to be deleted as a parameter, and returns true or false depending on if the value could be deleted.
+
 `PreOrder` returns a slice of integers that represents a traversal of the tree in Pre Order.
 
 `InOrder` returns a slice of integers that represents a traversal of the tree In Order.
@@ -54,11 +56,29 @@ func main() {
 	} else {
 		fmt.Println(" levels.")
 	}
+
+	// Show tree
+	fmt.Println("Tree nodes in order:", tree.InOrder())
+
+	// Delete node 5
+	if (tree.Delete(node)) {
+		fmt.Println("Node", node, "was successfully deleted.")
+	} else {
+		fmt.Println("Node", node, "was not deleted.")
+	}
+
+	// 
+	fmt.Println("Tree nodes in order:", tree.InOrder())
 }
 ```
 
 Output:
-`Node 5 was found after searching 3 levels.`
+```
+Node 5 was found after searching 3 levels.
+Tree nodes in order: [2 3 4 5 6 7]
+Node 5 was successfully deleted.
+Tree nodes in order: [2 3 4 6 7]
+```
 
 
 ## License
