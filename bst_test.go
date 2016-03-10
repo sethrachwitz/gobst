@@ -2,6 +2,7 @@ package bst
 
 import (
 	"testing"
+	"fmt"
 )
 
 func SetupBST() (tree *Tree) {
@@ -97,6 +98,46 @@ func TestFind(t *testing.T) {
 		t.Error("Node 5 not found")
 	} else if level != 3 {
 		t.Error("Node 5 found at incorrect level")
+	}
+}
+
+func TestDelete(t *testing.T) {
+	tree := SetupBST()
+
+	if (tree == nil) {
+		t.Fatal("Setup failed")
+	}
+
+	// Delete root node
+	if (!tree.Delete(4)) {
+		t.Error("Could not delete root node")
+	}
+
+	// Delete non-root and non-leaf node
+	if (!tree.Delete(3)) {
+		t.Error("Could not delete non-root and non-leaf node")
+	}
+
+	// Delete leaf node
+	if (!tree.Delete(7)) {
+		t.Error("Could not delete leaf node")
+	}
+
+	// Check that tree structure is okay
+	correct := []int{2,5,6}
+
+	items := tree.InOrder()
+
+	fmt.Println(items)
+
+	if (len(items) != len(correct)) {
+		t.Error("Tree structure is incorrect")
+	} else {
+		for k, v := range items {
+			if v != correct[k] {
+				t.Error("Tree structure is incorrect")
+			}
+		}
 	}
 }
 
