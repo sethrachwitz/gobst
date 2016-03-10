@@ -1,6 +1,6 @@
 gobst
 ===
-The package `sethrachwitz/gobst` implements a binary search tree in go.  Current functionality allows for `Insert` and `Find` to be called on the tree.  Future functionality will include a `Delete` method as well as `Serialize` and `Deserialize` methods.
+The package `sethrachwitz/gobst` implements a binary search tree in go.  Current functionality allows for `Insert` and `Find` to be called on the tree.  Future functionality will include `Serialize` and `Deserialize` methods.
 
 This package can be downloaded by running `go get github.com/sethrachwitz/gobst`.
 
