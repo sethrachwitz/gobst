@@ -18,6 +18,10 @@ This package can be downloaded by running `go get github.com/sethrachwitz/gobst`
 
 `PostOrder` returns a slice of integers that represents a traversal of the tree in Post Order.
 
+`Serialize` takes a filename as a parameter and creates/truncates that file and stores the tree in a serialized format so it can be restored later.
+
+`Deserialize` takes a filename as a parameter and deserializes the contents of the file into the tree.
+
 The number of levels traversed starts at 1 (the root node), and increases by one every time a child is visited.  If `Find` found the value to be the root node, the number of levels traversed would be 1.  If the value was a direct child of the root node, the number of levels traversed would be 2, etc.
 
 Example:
@@ -67,8 +71,11 @@ func main() {
 		fmt.Println("Node", node, "was not deleted.")
 	}
 
-	// 
+	// Print tree nodes in order
 	fmt.Println("Tree nodes in order:", tree.InOrder())
+
+	// Serialize the tree so it can be deserialized later
+	tree.Serialize("tree.txt")
 }
 ```
 
