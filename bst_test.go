@@ -2,7 +2,6 @@ package bst
 
 import (
 	"testing"
-	"fmt"
 )
 
 func SetupBST() (tree *Tree) {
@@ -127,8 +126,6 @@ func TestDelete(t *testing.T) {
 	correct := []int{2,5,6}
 
 	items := tree.InOrder()
-
-	fmt.Println(items)
 
 	if (len(items) != len(correct)) {
 		t.Error("Tree structure is incorrect")
